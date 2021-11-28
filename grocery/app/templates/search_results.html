@@ -13,37 +13,31 @@
 <body>
     <header>
     <div class="wrapper">
-        <h1>CheapGrocery<span class="color">.</span></h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home </a></li>
-                <li><a href="{% url 'searchpage' %}">Search </a></li>
-                <li><a href="{% url 'add_grocery' %}"> Add Grocery </a></li>
-            </ul>
-        </nav>
+        <h1><a href="{% url 'home' %}">CheapGrocery<span class="color">. </a></h1>
     </div>
   </header>
   <h2>Grocery Details</h2>
 <!-- bring all the prices first then later give the cheapest -->
-  <!-- <div class="row">
-    <div class="col s6">
-     <div class="card">
-        <div class="span-content">
-          <span class="card-title">{{query}}</span>
-        </div>
-     </div> 
-    </div>
-  </div> -->
+{% for mall in object_list %}
   <ul>
-    {% for mall in object_list %}
       <li>
         {{ mall.grocery.item_name }}
       </li>
       <li>
         {{mall.item_mall}} {{ mall.item_price }}
       </li>
-    {% endfor %}
+{% endfor %}
   </ul>
   <input type="submit" value="Add mall">
+  <div>
+    {% for message in messages %}
+      <div class="bg-model">
+          <div class="model-content">
+              <h3>{{message}}</h3>
+              <a href="{% url 'add_grocery' %}"> Add Grocery </a>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
 </body>
 </html>

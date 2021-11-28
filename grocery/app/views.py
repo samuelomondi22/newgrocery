@@ -1,5 +1,6 @@
+from django import template
 from django.db.models.query import InstanceCheckMeta
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import Grocery, Mall
 from django.db.models import Q, fields
@@ -7,7 +8,7 @@ from django.forms import ModelForm
 from .forms import MallForm, GroceryForm
 import datetime as dt
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 
@@ -20,7 +21,9 @@ class HomePageView(TemplateView):
 class GroceryDetail(TemplateView):
     template_name = 'detail.html'
 
-
+class MallGrocery(TemplateView):
+    template_name = 'add_mall.html'
+    
 class SearchGrocery(TemplateView):
     template_name = 'add_grocery.html'
 
@@ -29,51 +32,43 @@ class SearchGrocery(TemplateView):
         if self.request.method == 'POST':
             if self.request.POST.get('item_name') and self.request.POST.get('item_comment') and self.request.POST.get('item_rate') and self.request.POST.get('date') and self.request.POST.get(
                     'item_price') and self.request.POST.get('item_mall'):
-                # grocery = Grocery()
-                # mall = Mall()
-                # grocery.item_name = self.request.POST.get('item_name')
-                # grocery.item_comment = self.request.POST.get('item_comment')
-                # grocery.item_rate = self.request.POST.get('item_rate')
-                # grocery.save()
-                # date = self.request.POST.get('date')
-                # item_price = self.request.POST.get('item_price')
-                # item_mall = self.request.POST.get('item_mall')
-                # grocery.mall_set.create(
-                #     date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
                 item_name = self.request.POST.get('item_name')
-                if Grocery.objects.filter(item_name=item_name) == item_name:
-                    messages.error(self.request, "Item Already exists in the database")
-                item_comment = self.request.POST.get('item_comment')
-                item_rate = self.request.POST.get('item_rate')
-                grocery = Grocery(
-                    item_name=item_name, item_comment=item_comment, item_rate=item_rate)
-                grocery.save()
-                date = self.request.POST.get('date')
-                item_price = self.request.POST.get('item_price')
-                item_mall = self.request.POST.get('item_mall')  
-                grocery.mall_set.create(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
-                grocery.save()
-                messages.success(self.request, "Item Added")
+                if Grocery.objects.get(item_name=item_name):
+                    return render(request, './templates/home.html')
+                else:
+                    item_comment = self.request.POST.get('item_comment')
+                    item_rate = self.request.POST.get('item_rate')
+                    grocery = Grocery(
+                        item_name=item_name, item_comment=item_comment, item_rate=item_rate)
+                    grocery.save()
+                    date = self.request.POST.get('date')
+                    item_price = self.request.POST.get('item_price')
+                    item_mall = self.request.POST.get('item_mall')  
+                    grocery.mall_set.create(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
+                    grocery.save()
+                    messages.success(self.request, "Item Added")
 
-                return render(request, '../templates/add_grocery.html', {})
+                return render(request, './templates/add_grocery.html', {})
 
             else:
                 return render(request, '../templates/add_grocery.html', {})
 
 
-class SearchPage(TemplateView):
-    template_name = 'searchpage.html'
+class NoGrocery(TemplateView):
+    template_name = 'modalsection.html'
 
 class SearchResultsView(ListView):
     template_name = 'search_results.html'
-    
+    # template_name = 'home.html'
+    # have this give a pop up message if the item searched for isn't there and give an option of continue to search or add
+    # the item
     def get_queryset(self): 
         query = self.request.GET.get('q')
-        object_list = Grocery.objects.get(
-            Q(item_name__icontains=query) 
-            # | Q(state__icontains=query)
-        ).mall_set.all()
-        return object_list
-
-
+        if Grocery.objects.filter(item_name=query).exists():
+            object_list = Grocery.objects.get(
+            Q(item_name__icontains=query)).mall_set.all()
+            return object_list
+        else:
+            messages.error(self.request,"Item does not exist in the database would you like to add?")
+            return redirect("search_results.html")
 
