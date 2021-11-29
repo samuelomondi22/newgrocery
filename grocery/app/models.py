@@ -14,8 +14,7 @@ MALL = (
 
 class Grocery(models.Model):
     item_name = models.CharField(max_length=30)
-    item_comment = models.TextField(max_length=250)
-    item_rate = models.IntegerField()
+    item_comment = models.TextField(max_length=250, null=True)
 
     def __str__(self):
         return self.item_name
@@ -27,8 +26,7 @@ class Grocery(models.Model):
 class Mall(models.Model):
     date = models.DateField('date-item-entered')
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
-    item_mall = models.CharField(
-        max_length=20, choices=MALL, default='WALMART')
+    item_mall = models.CharField(max_length=20, choices=MALL, default='WALMART')
     grocery = models.ForeignKey(Grocery, on_delete=models.CASCADE)
 
     def __str__(self):
