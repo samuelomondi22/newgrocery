@@ -20,9 +20,6 @@ class HomePageView(TemplateView):
 
 class GroceryDetail(TemplateView):
     template_name = 'detail.html'
-
-class MallGrocery(TemplateView):
-    template_name = 'add_mall.html'
     
 class SearchGrocery(TemplateView):
     template_name = 'add_grocery.html'
@@ -33,25 +30,22 @@ class SearchGrocery(TemplateView):
             if self.request.POST.get('item_name') and self.request.POST.get('item_comment') and self.request.POST.get('item_rate') and self.request.POST.get('date') and self.request.POST.get(
                     'item_price') and self.request.POST.get('item_mall'):
                 item_name = self.request.POST.get('item_name')
-                if Grocery.objects.get(item_name=item_name):
-                    return render(request, './templates/home.html')
-                else:
-                    item_comment = self.request.POST.get('item_comment')
-                    item_rate = self.request.POST.get('item_rate')
-                    grocery = Grocery(
-                        item_name=item_name, item_comment=item_comment, item_rate=item_rate)
-                    grocery.save()
-                    date = self.request.POST.get('date')
-                    item_price = self.request.POST.get('item_price')
-                    item_mall = self.request.POST.get('item_mall')  
-                    grocery.mall_set.create(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
-                    grocery.save()
-                    messages.success(self.request, "Item Added")
+                item_comment = self.request.POST.get('item_comment')
+                item_rate = self.request.POST.get('item_rate')
+                grocery = Grocery(
+                    item_name=item_name, item_comment=item_comment, item_rate=item_rate)
+                grocery.save()
+                date = self.request.POST.get('date')
+                item_price = self.request.POST.get('item_price')
+                item_mall = self.request.POST.get('item_mall')  
+                grocery.mall_set.create(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
+                grocery.save()
+                messages.success(self.request, "Item Added Successfully")
 
-                return render(request, './templates/add_grocery.html', {})
+                return render(self.request, './templates/add_grocery.html', {})
 
             else:
-                return render(request, '../templates/add_grocery.html', {})
+                return render(self.request, '../templates/add_grocery.html', {})
 
 
 class NoGrocery(TemplateView):
@@ -59,16 +53,30 @@ class NoGrocery(TemplateView):
 
 class SearchResultsView(ListView):
     template_name = 'search_results.html'
-    # template_name = 'home.html'
     # have this give a pop up message if the item searched for isn't there and give an option of continue to search or add
     # the item
     def get_queryset(self): 
         query = self.request.GET.get('q')
         if Grocery.objects.filter(item_name=query).exists():
             object_list = Grocery.objects.get(
-            Q(item_name__icontains=query)).mall_set.all()
+            Q(item_name__icontains=query))
             return object_list
         else:
             messages.error(self.request,"Item does not exist in the database would you like to add?")
             return redirect("search_results.html")
+    
+    def post(self, request):
+        grocery = self.get_queryset()
+        if self.request.method == 'POST':
+            if self.request.POST.get('date') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
+                date = self.request.POST.get('date')
+                item_price = self.request.POST.get('item_price')
+                item_mall = self.request.POST.get('item_mall')
+                mall = Mall(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
+                mall.save()
+                messages.success(self.request, "Mall Added Successfully")
 
+                return render(self.request, './templates/search_results.html', {})
+
+            else:
+                return render(self.request, './templates/search_results.html', {})

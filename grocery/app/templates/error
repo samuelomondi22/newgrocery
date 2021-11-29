@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {%load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+  <title>Document</title>
+</head>
+<body>
+    <header>
+    <div class="wrapper">
+        <h1><a href="{% url 'home' %}">CheapGrocery<span class="color">. </a></h1>
+    </div>
+  </header>
+  <h2>Grocery Details</h2>
+<!-- bring all the prices first then later give the cheapest -->
+{% for mall in object_list %}
+  <ul>
+      <li>
+        {{ mall.grocery.item_name }}
+      </li>
+      <li>
+        {{mall.item_mall}} {{ mall.item_price }}
+      </li>
+{% endfor %}
+  </ul>
+{{}}
+  <input type="submit" value="Add mall">
+  <div>
+    {% for message in messages %}
+      <div class="bg-model">
+          <div class="model-content">
+              <h3>{{message}}</h3>
+              <a href="{% url 'add_grocery' %}"> Add Grocery </a>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

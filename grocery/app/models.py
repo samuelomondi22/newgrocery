@@ -33,3 +33,5 @@ class Mall(models.Model):
 
     def __str__(self):
         return f"{self.get_item_mall_display()} on {self.date}"
+    class Meta:
+        ordering = ['item_price']
