@@ -27,25 +27,21 @@ class SearchGrocery(TemplateView):
     # retrieve and check if the item_name exist if it does call the add mall function is not then this function below is called
     def post(self, request):
         if self.request.method == 'POST':
-            if self.request.POST.get('item_name') and self.request.POST.get('item_comment') and self.request.POST.get('item_rate') and self.request.POST.get('date') and self.request.POST.get(
-                    'item_price') and self.request.POST.get('item_mall'):
+            if self.request.POST.get('item_name') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
                 item_name = self.request.POST.get('item_name')
-                item_comment = self.request.POST.get('item_comment')
-                item_rate = self.request.POST.get('item_rate')
                 grocery = Grocery(
-                    item_name=item_name, item_comment=item_comment, item_rate=item_rate)
+                    item_name=item_name)
                 grocery.save()
-                date = self.request.POST.get('date')
                 item_price = self.request.POST.get('item_price')
                 item_mall = self.request.POST.get('item_mall')  
-                grocery.mall_set.create(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
+                grocery.mall_set.create(item_price=item_price, item_mall=item_mall, grocery=grocery)
                 grocery.save()
                 messages.success(self.request, "Item Added Successfully")
 
-                return render(self.request, './templates/add_grocery.html', {})
+                return redirect('/')
 
             else:
-                return render(self.request, '../templates/add_grocery.html', {})
+                return redirect('/')
 
 
 class NoGrocery(TemplateView):
@@ -68,15 +64,14 @@ class SearchResultsView(ListView):
     def post(self, request):
         grocery = self.get_queryset()
         if self.request.method == 'POST':
-            if self.request.POST.get('date') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
-                date = self.request.POST.get('date')
+            if self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
                 item_price = self.request.POST.get('item_price')
                 item_mall = self.request.POST.get('item_mall')
-                mall = Mall(date=date, item_price=item_price, item_mall=item_mall, grocery=grocery)
+                mall = Mall(item_price=item_price, item_mall=item_mall, grocery=grocery)
                 mall.save()
                 messages.success(self.request, "Mall Added Successfully")
 
-                return render(self.request, './templates/search_results.html', {})
+                return redirect('search_results.html')
 
             else:
-                return render(self.request, './templates/search_results.html', {})
+                return redirect('search_results.html')

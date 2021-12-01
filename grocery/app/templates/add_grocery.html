@@ -23,39 +23,17 @@
         {% csrf_token %}
         <label for="">Item Name</label>
         <input type="text" value="" name="item_name">
-        <label for="">Item Comment</label>
-        <input type="text" value="" name="item_comment">
-        <label for="">Item Rate</label>
-        <input type="text" value="" name="item_rate">
-        <label for="">Date</label>
-        <input type="date" class="datepicker" name="date">  
-            <!-- <script>
-            $('.datepicker').pickadate({
-                selectMonths: true, // Enable Month Selection
-                selectYears: 10, // Creates a dropdown of 10 years to control year
-                defaultDate: new Date()
-            });
-            </script> -->
         <label for="">Item Price</label>
         <input type="text" value="" name="item_price">
         <label for="">Item Mall</label>
         <input type="text" value="" name="item_mall">
         <input type="submit" value="Save" name="">
     </form>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
-        <!-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            var options = {
-                defaultDate: new Date(2018, 1, 3),
-                setDefaultDate: true
-            };
-            var elems = document.querySelector('.datepicker');
-            var instance = M.Datepicker.init(elems, options);
-            // instance.open();
-            instance.setDate(new Date(2018, 2, 8));
-            });
-        </script> -->
+    <div>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
     {% endblock content %}
 </body>
 </html>

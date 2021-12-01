@@ -41,7 +41,7 @@
         <tbody>
           {% for mall in object_list.mall_set.all %}
             <tr>
-              <td>{{mall.date}}</td>
+              <td>{{mall.created_at}}</td>
               <td>{{mall.item_price}}</td>
               <td>{{mall.item_mall}}</td>
             </tr>

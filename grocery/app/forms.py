@@ -5,7 +5,7 @@ from .models import Mall, Grocery
 class MallForm(ModelForm):
     class Meta:
         model = Mall
-        fields = ['date', 'item_price', 'item_mall']
+        fields = '__all__'
 
 
 class GroceryForm(ModelForm):
