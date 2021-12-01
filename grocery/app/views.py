@@ -1,15 +1,7 @@
-from django import template
-from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView
 from .models import Grocery, Mall
-from django.db.models import Q, fields
-from django.forms import ModelForm
-from .forms import MallForm, GroceryForm
-import datetime as dt
-from django.template import RequestContext
-from django.http import HttpResponse, request
-from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.contrib import messages
 
 # Create your views here.
@@ -28,8 +20,13 @@ class SearchGrocery(TemplateView):
     def post(self):
         if self.request.method == 'POST':
             new_item_name = self.request.POST.get('item_name')
+            new_item_comment = self.request.POST.get('item_comment')
+            new_item_rate = self.request.POST.get('item_rate')
+            new_date = self.request.POST.get('date')
+            new_item_price = self.request.POST.get('item_price')
+            new_mall = self.request.POST.get('item_mall')
 
-            if self.request.POST.get('item_name') and self.request.POST.get('item_comment') and self.request.POST.get('item_rate') and self.request.POST.get('date') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
+            if new_item_name and new_item_comment and new_item_rate and new_date and new_item_price and new_mall:
                 item_name = self.request.POST.get('item_name') #check if exists
                 item_comment = self.request.POST.get('item_comment')
                 item_rate = self.request.POST.get('item_rate')
@@ -66,7 +63,7 @@ class SearchResultsView(ListView):
             messages.error(self.request,"Item does not exist in the database would you like to add?")
             return redirect("search_results.html")
     
-    def post(self, request):
+    def post(self):
         grocery = self.get_queryset()
         if self.request.method == 'POST':
             if self.request.POST.get('date') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
