@@ -1,15 +1,7 @@
-from django import template
-from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView
 from .models import Grocery, Mall
-from django.db.models import Q, fields
-from django.forms import ModelForm
-from .forms import MallForm, GroceryForm
-import datetime as dt
-from django.template import RequestContext
-from django.http import HttpResponse, request
-from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.contrib import messages
 
 # Create your views here.
@@ -25,7 +17,7 @@ class SearchGrocery(TemplateView):
     template_name = 'add_grocery.html'
 
     # retrieve and check if the item_name exist if it does call the add mall function is not then this function below is called
-    def post(self, request):
+    def post(self):
         if self.request.method == 'POST':
             if self.request.POST.get('item_name') and self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
                 item_name = self.request.POST.get('item_name')
@@ -61,7 +53,7 @@ class SearchResultsView(ListView):
             messages.error(self.request,"Item does not exist in the database would you like to add?")
             return redirect("search_results.html")
     
-    def post(self, request):
+    def post(self):
         grocery = self.get_queryset()
         if self.request.method == 'POST':
             if self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
