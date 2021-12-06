@@ -30,6 +30,10 @@ This is a program that will be used as a web app to search for groceries in the 
 * [Learn Django](https://learndjango.com/tutorials/django-search-tutorial)
 * [Youtube](https://www.youtube.com/watch?v=ZsJRXS_vrw0)
 * [Django Rest Framework](https://www.django-rest-framework.org/#installation)
+* [Stack Overflow](https://stackoverflow.com/questions/60474445/how-do-i-make-it-so-that-my-search-bar-does-not-collapse-when-its-on-focus)
+* [Django](https://docs.djangoproject.com/en/3.2/howto/static-files/)
+* [Stack Overflow](https://stackoverflow.com/questions/14854900/how-to-move-text-up-using-css-when-nothing-is-working)
+* [Youtube](https://www.youtube.com/watch?v=v1PeTDrw6OY&t=41s)
 
 # Future Work
 
