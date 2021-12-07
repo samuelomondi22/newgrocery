@@ -67,3 +67,5 @@ class SearchResultsView(ListView):
 
             else:
                 return redirect('search_results.html')
+
+            
