@@ -23,6 +23,7 @@
       </div>
     </div>
     <div class="col-s6">
+      <p>Update Grocery Info</p>
        <form action="" method="post">
         {% csrf_token %}
         <label for="">Date</label>
@@ -32,7 +33,7 @@
         <label for="">Item Mall</label>
         <input type="text" value="" name="item_mall">
         <input type="submit" value="Save" name="">
-      </form>
+        </form>
       <input type="submit" value="Add Mall" class="btn">
       <table class="stripped">
         <thead>
@@ -50,6 +51,7 @@
       </table>
     </div>
   </div>
+
   <div>
     {% for message in messages %}
       <h3>{{message}}</h3>
