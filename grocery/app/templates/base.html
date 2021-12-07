@@ -3,10 +3,11 @@
 <html>
 
     <head>
-        <img src="static/MicrosoftTeams-image.png" alt="logo">
+        {% load static %}
+        <img src="{% static 'MicrosoftTeams-image.png' %}" alt="logo">
+
         <title>Grocery App</title>
 
-        {% load static %}
 
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
