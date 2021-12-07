@@ -11,13 +11,14 @@ MALL = (
     ('ALBERTSON', 'Albertson')
 )
 
-
 class Grocery(models.Model):
     item_name = models.CharField(max_length=30)
 
+    # Returns the item name in the terminal
     def __str__(self):
         return self.item_name
 
+    # Gives you the details of searched 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'grocery_id': self.id})
 
@@ -28,6 +29,10 @@ class Mall(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
     item_mall = models.CharField(max_length=20, choices=MALL, default='WALMART')
+
+    # Comes from the Grocery table
     grocery = models.ForeignKey(Grocery, on_delete=models.CASCADE)
+
+    # Allows you to order by item price
     class Meta:
         ordering = ['item_price']
