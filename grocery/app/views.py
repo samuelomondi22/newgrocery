@@ -24,13 +24,17 @@ class AddGrocery(TemplateView):
                 # add a self check
                 new_item_price = self.request.POST.get('item_price')
                 new_item_mall = self.request.POST.get('item_mall')
+                if Grocery.objects.filter(item_name=new_item_name).exists():
+                    grocery_to_update = Grocery.objects.filter(item_name = new_item_name)
+                    Mall.objects.filter(grocery=grocery_to_update, item_mall=new_item_mall).update(new_item_price=new_item_price)
+                else:
+                    new_grocery = Grocery(item_name=new_item_name)
+                    new_grocery.save()
 
-                grocery = Grocery(item_name=new_item_name)
-                grocery.save()
-
-                # mall_set is built in function, saves the mall items with the accsiated grocery
-                grocery.mall_set.create(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
-                grocery.save()
+                    # mall_set is built in function, saves the mall items with the accsiated new_grocery
+                    new_grocery.mall_set.create(item_price=new_item_price, item_mall=new_item_mall, grocery=new_grocery)
+                    new_grocery.save()
+                
 
                 # stores the message in the database
                 messages.success(self.request, "Item Added Successfully")
