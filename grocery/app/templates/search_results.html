@@ -12,9 +12,9 @@
       {% else %}
       <p>Update Grocery Info</p>
        <form method="post"> {% csrf_token %}
-        <label for="">Item Price</label>
+        <label for="item_price">Item Price</label>
         <input type="text" value="" name="item_price">
-        <label for="">Item Mall</label>
+        <label for="item_mall">Item Mall</label>
         <input type="text" value="" name="item_mall">
         <input type="submit" value="Save" name="save-mall">
         </form>

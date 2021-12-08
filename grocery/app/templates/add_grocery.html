@@ -20,11 +20,11 @@
     {% block content %}
     <h1>Add a grocery</h1>
     <form method="post"> {% csrf_token %}
-        <label for="">Item Name</label>
+        <label for="item_name">Item Name</label>
         <input type="text" value="" name="item_name">
-        <label for="">Item Price</label>
+        <label for="item_price">Item Price</label>
         <input type="text" value="" name="item_price">
-        <label for="">Item Mall</label>
+        <label for="item_mall">Item Mall</label>
         <input type="text" value="" name="item_mall">
         <input type="submit" value="Save" name="">
     </form>
