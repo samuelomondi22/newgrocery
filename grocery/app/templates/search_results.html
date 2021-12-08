@@ -6,16 +6,13 @@
   <div class="row">
     <div class="col-s6">
       <p>Update Grocery Info</p>
-       <form method="post"> {% csrf_token %}
-        <label for="">Date</label>
-        <input type="date" class="datepicker" name="date">  
+       <form action="{% url 'success' %}" method="post"> {% csrf_token %} 
         <label for="">Item Price</label>
         <input type="text" value="" name="item_price">
         <label for="">Item Mall</label>
         <input type="text" value="" name="item_mall">
         <input type="submit" value="Save" name="save-mall">
         </form>
-      <input type="submit" value="Add Mall" class="btn">
       <table class="stripped">
         <thead>
           <tr><th>Date</th><th>Price</th><th>Mall</th></tr>
