@@ -5,22 +5,23 @@
 
 {% block content %}
 
-    <h1>CheapGrocery.</h1>
+    <h1>CheapGrocery</h1>
 
-    <form action="{% url 'search_results' %}" method="get">
+    <form action="{% url 'search_results' %}" method="get" >
 
         <div class="search-results">
 
-            <input class="search-text" name="q" type="text" placeholder="Type seach here...">
+            <input class="search-text" name="search" type="text" placeholder="Type seach here...">
 
             <a class="search-btn" href="#">
 
-                <i class="fas fa-search"></i>
+                <button><i class="fas fa-search"></i></button>
+                
 
             </a>
 
         </div>
-
+        
     </form>
 
 
