@@ -8,8 +8,8 @@ admin.site.register(Mall)
 
 """
 Admin credentials
-Username: samuel
-Password:
+Username: samuelomondi
+Password: DjangoA
 
 Note - remove this if hosting site
 """

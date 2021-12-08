@@ -19,8 +19,7 @@
     </header>
     {% block content %}
     <h1>Add a grocery</h1>
-    <form action="" method="post">
-        {% csrf_token %}
+    <form method="post"> {% csrf_token %}
         <label for="">Item Name</label>
         <input type="text" value="" name="item_name">
         <label for="">Item Price</label>

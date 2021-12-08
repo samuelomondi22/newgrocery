@@ -16,7 +16,7 @@ class AddGrocery(TemplateView):
     template_name = 'add_grocery.html'
 
     # retrieve and check if the item_name exist if it does call the add mall function is not then this function below is called
-    def post(self):
+    def post(self, request):
         if self.request.method == 'POST':
             # validates that we have values for each of the required fields
             if self.request.POST.get('item_name') and  self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
@@ -24,13 +24,17 @@ class AddGrocery(TemplateView):
                 # add a self check
                 new_item_price = self.request.POST.get('item_price')
                 new_item_mall = self.request.POST.get('item_mall')
+                if Grocery.objects.filter(item_name=new_item_name).exists():
+                    grocery_to_update = Grocery.objects.filter(item_name = new_item_name)
+                    Mall.objects.filter(grocery=grocery_to_update, item_mall=new_item_mall).update(new_item_price=new_item_price)
+                else:
+                    new_grocery = Grocery(item_name=new_item_name)
+                    new_grocery.save()
 
-                grocery = Grocery(item_name=new_item_name)
-                grocery.save()
-
-                # mall_set is built in function, saves the mall items with the accsiated grocery
-                grocery.mall_set.create(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
-                grocery.save()
+                    # mall_set is built in function, saves the mall items with the accsiated new_grocery
+                    new_grocery.mall_set.create(item_price=new_item_price, item_mall=new_item_mall, grocery=new_grocery)
+                    new_grocery.save()
+                
 
                 # stores the message in the database
                 messages.success(self.request, "Item Added Successfully")
@@ -59,7 +63,7 @@ class SearchResultsView(ListView):
             return redirect("search_results.html")
     
     # This function allows you to post a mall, has nothing to do with groceries
-    def post(self):
+    def post(self, request):
         grocery = self.get_queryset()
         if self.request.method == 'POST':
             
@@ -75,3 +79,5 @@ class SearchResultsView(ListView):
                 return redirect('search_results.html')
             else:
                 return redirect('search_results.html')
+
+            
