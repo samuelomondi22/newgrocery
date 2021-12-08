@@ -42,3 +42,10 @@ This is a program that will be used as a web app to search for groceries in the 
 * python -m venv venv
 * cd venv
 * sudo pip install Django==3.2.9
+
+# Steps to run Website
+
+* cd to virtual enviroment
+* cd grocery
+* python manage.py runserver
+* Click on link to open webiste
