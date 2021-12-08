@@ -91,12 +91,13 @@ img {
 }
 
 #results img {
-    width: 150px;
-    height: 150px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    bottom: 195px;
+    width: 120px;
+    height: 120px;
+    padding: 5%;
+    display: block;
+    margin: auto;
+    margin-top: -25px;
+    margin-right: -50%;
 }
 
 .row {
@@ -105,5 +106,16 @@ img {
     padding: 25px 30px;
     background: #fff;
     border-radius: 5px;
+    margin-bottom: -10%;
+    margin-right: 10%;
+}
+
+.col-s6 {
+    font-size: 15px;
+}
+
+.update {
+    font-size: 25px;
+    font-weight: bold;
 }
 
