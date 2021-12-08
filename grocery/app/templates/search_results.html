@@ -29,7 +29,7 @@
         <tbody>
           {% for mall in object_list.mall_set.all %}
             <tr>
-              <td>{{mall.created_at}}</td>
+              <td>{{mall.created_at}}</td> <!-- We need to fix this so that it shows the the most recently updated date -->
               <td>{{mall.grocery}}</td>
               <td>{{mall.item_price}}</td>
               <td>{{mall.item_mall}}</td>
