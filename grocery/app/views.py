@@ -1,9 +1,7 @@
-from django.http import request
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView
 from .models import Grocery, Mall
-from django.db.models import Q, query
-from django.contrib import messages
+from django.db.models import Q
 from django.conf import settings
 
 # Create your views here.
