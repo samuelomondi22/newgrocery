@@ -7,5 +7,5 @@ urlpatterns = [
     path('add_grocery/', AddGrocery.as_view(), name='add_grocery'),
     path('detail/', GroceryDetail.as_view(), name='detail'),
     path('success/', success_view, name='success'),
-    path('failed/', failed_view, name='failed')
+    path('failed/', failed_view, name='failed'),
 ]

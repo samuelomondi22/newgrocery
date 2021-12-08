@@ -1,7 +1,8 @@
+from django.http import request
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, ListView, UpdateView
+from django.views.generic import TemplateView, ListView
 from .models import Grocery, Mall
-from django.db.models import Q
+from django.db.models import Q, query
 from django.contrib import messages
 from django.conf import settings
 
@@ -13,7 +14,7 @@ class HomePageView(TemplateView):
 class GroceryDetail(TemplateView):
     template_name = 'detail.html'
     
-class AddGrocery(UpdateView):
+class AddGrocery(TemplateView):
     template_name = 'add_grocery.html'
 
     # retrieve and check if the item_name exist if it does call the add mall function is not then this function below is called
@@ -42,19 +43,14 @@ class NoGrocery(TemplateView):
 
 class SearchResultsView(ListView):
     template_name = 'search_results.html'
-    # have this give a pop up message if the item searched for isn't there and give an option of continue to search or add
-    # the item
-    def get_queryset(self): 
-        query = self.request.GET.get('q')
 
+    def get_queryset(self): 
+        query = self.request.GET.get('search')
         # This checks if the searched grocery exists
         if Grocery.objects.filter(item_name=query).exists():
             object_list = Grocery.objects.get(Q(item_name__icontains=query))
             return object_list
-        else:
-            messages.error(self.request,"Item does not exist in the database would you like to add?")
-            pass
-    
+
     # This function allows you to post a mall, has nothing to do with groceries
     def post(self, request):
         grocery = self.get_queryset()
