@@ -5,9 +5,9 @@
 <body id="results">
   <div class="row">
     <div class="col-s6">
-    {% for mall in object_list.mall_set.all %}
+      {% for mall in object_list.mall_set.all %}
       <p>Update Grocery Info</p>
-       <form action="{% url 'success' %}" method="post"> {% csrf_token %} 
+       <form method="post"> {% csrf_token %}
         <label for="">Item Price</label>
         <input type="text" value="" name="item_price">
         <label for="">Item Mall</label>
@@ -27,19 +27,12 @@
           </tbody>
         </table>
         {% empty %}
-        No Results
+        No search results for this query.
         <p><a href="{% url 'add_grocery' %}">Add Grocery</a></p>
-        <a href="{% url 'home' %}">Go back to  Homepage</a>
-        <p>
+        <a href="{% url 'home' %}">Go back to HomePage</a>
         {% endfor %}
     </div>
   </div>
 
-  <div>
-    {% for message in messages %}
-      <h3>{{message}}</h3>
-      <a href="{% url 'add_grocery' %}"> Add Grocery </a>
-    {% endfor %}
-  </div>
 </body>
 {% endblock content %}
