@@ -3,11 +3,12 @@ body {
     width: 75%;
     margin: auto;
     background-color: rgb(2, 133, 255);
+    min-width: 950px;
 }
 
 h1 {
     text-align: center;
-    margin-top: -135px;
+    margin-top: -90px;
 }
 
 .search-results {
@@ -74,12 +75,11 @@ h1 {
 
 img {
     width: 110px;
-    height: 110px;
-    padding: 50px;
-    margin: 60px;
-    position: relative;
-    left: 315px;
-    bottom: 35px;
+    height: 20%;
+    display: block;
+    margin: auto;
+    padding: 10%;
+    left: 10%;
 }
 
 #results {
