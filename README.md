@@ -25,7 +25,6 @@ This is a program that will be used as a web app to search for groceries in the 
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 * [Django](https://docs.djangoproject.com/en/3.2/topics/class-based-views/)
 * [Learn Django](https://learndjango.com/tutorials/django-search-tutorial)
 * [Youtube](https://www.youtube.com/watch?v=ZsJRXS_vrw0)
@@ -43,4 +42,3 @@ This is a program that will be used as a web app to search for groceries in the 
 * python -m venv venv
 * cd venv
 * sudo pip install Django==3.2.9
-* pip install djangorestframework
