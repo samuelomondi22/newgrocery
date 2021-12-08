@@ -59,7 +59,6 @@ class SearchResultsView(ListView):
     def post(self, request):
         grocery = self.get_queryset()
         if self.request.method == 'POST':
-            
             if self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
                 new_item_price = self.request.POST.get('item_price')
                 new_item_mall = self.request.POST.get('item_mall')
@@ -67,9 +66,9 @@ class SearchResultsView(ListView):
                 mall = Mall(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
                 mall.save()
 
-                pass
+                return redirect('http://127.0.0.1:8000/success/')
             else:
-                pass
+                redirect('http://127.0.0.1:8000/failed/')
 
 def success_view(request):
     return render(request, "success.html", {})
