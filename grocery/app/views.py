@@ -56,9 +56,12 @@ class SearchResultsView(ListView):
             if self.request.POST.get('item_price') and self.request.POST.get('item_mall'):
                 new_item_price = self.request.POST.get('item_price')
                 new_item_mall = self.request.POST.get('item_mall')
-                
-                mall = Mall(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
-                mall.save()
+
+                if Mall.objects.filter(item_mall=new_item_mall).exists():
+                    Mall.objects.filter(item_mall=new_item_mall).filter(grocery=grocery).update(item_price=new_item_price)
+                else:   
+                    mall = Mall(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
+                    mall.save()
 
                 return redirect('http://127.0.0.1:8000/success/')
             else:
