@@ -5,6 +5,7 @@
 <body id="results">
   <div class="row">
     <div class="col-s6">
+    {% for mall in object_list.mall_set.all %}
       <p>Update Grocery Info</p>
        <form action="{% url 'success' %}" method="post"> {% csrf_token %} 
         <label for="">Item Price</label>
@@ -18,15 +19,19 @@
           <tr><th>Date</th><th>Price</th><th>Mall</th></tr>
         </thead>
         <tbody>
-          {% for mall in object_list.mall_set.all %}
             <tr>
               <td>{{mall.created_at}}</td>
               <td>{{mall.item_price}}</td>
               <td>{{mall.item_mall}}</td>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        {% empty %}
+        No Results
+        <p><a href="{% url 'add_grocery' %}">Add Grocery</a></p>
+        <a href="{% url 'home' %}">Go back to  Homepage</a>
+        <p>
+        {% endfor %}
     </div>
   </div>
 
