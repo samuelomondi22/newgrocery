@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView
 from .models import Grocery, Mall
 from django.db.models import Q
 from django.contrib import messages
+from django.conf import settings
 
 # Create your views here.
 
@@ -12,7 +13,7 @@ class HomePageView(TemplateView):
 class GroceryDetail(TemplateView):
     template_name = 'detail.html'
     
-class AddGrocery(TemplateView):
+class AddGrocery(UpdateView):
     template_name = 'add_grocery.html'
 
     # retrieve and check if the item_name exist if it does call the add mall function is not then this function below is called
@@ -28,7 +29,6 @@ class AddGrocery(TemplateView):
                 else:
                     new_grocery = Grocery(item_name=new_item_name)
                     new_grocery.save()
-
                     # mall_set is built in function, saves the mall items with the accsiated new_grocery
                     new_grocery.mall_set.create(item_price=new_item_price, item_mall=new_item_mall, grocery=new_grocery)
                     new_grocery.save()

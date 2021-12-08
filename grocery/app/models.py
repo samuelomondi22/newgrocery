@@ -36,3 +36,6 @@ class Mall(models.Model):
     # Allows you to order by item price
     class Meta:
         ordering = ['item_price']
+
+class OrderItem(models.Model):
+    item = models.ForeignKey(Grocery, on_delete=models.CASCADE)
