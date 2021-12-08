@@ -24,12 +24,13 @@
         </form>
       <table class="stripped">
         <thead>
-          <tr><th>Date</th><th>Price</th><th>Mall</th></tr>
+          <tr><th>Date</th><th>Item</th><th>Price</th><th>Mall</th></tr>
         </thead>
         <tbody>
           {% for mall in object_list.mall_set.all %}
             <tr>
               <td>{{mall.created_at}}</td>
+              <td>{{mall.grocery}}</td>
               <td>{{mall.item_price}}</td>
               <td>{{mall.item_mall}}</td>
             </tr>
