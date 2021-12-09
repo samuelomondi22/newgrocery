@@ -2,7 +2,7 @@
 body {
     width: 75%;
     margin: auto;
-    background-color: rgb(2, 133, 255);
+    background-color: #71b7e6;
     min-width: 950px;
 }
 
@@ -96,7 +96,7 @@ img {
     padding: 5%;
     display: block;
     margin: auto;
-    margin-top: -25px;
+    margin-top: -30px;
     margin-right: -50%;
 }
 
@@ -111,9 +111,15 @@ img {
     object-fit: fill;
 }
 
+.col-s6 {
+    font-size: 20px;
+    line-height: 50px;
+}
+
 .update {
     font-size: 25px;
     font-weight: bold;
+    margin-left: 32%;
 }
 
 button {
@@ -127,6 +133,7 @@ table, th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
     border-image: linear-gradient(to right, #71b7e6, #9b59b6) 1;
+    line-height: 20px;
 }
 
 table {
@@ -138,4 +145,4 @@ tr:hover {background-color: #71b7e6;}
 th {
     background-color: #9b59b6;
     color: white;
-  }
+}

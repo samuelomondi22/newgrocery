@@ -30,6 +30,7 @@ This is a program that will be used as a web app to search for groceries in the 
 * [Youtube](https://www.youtube.com/watch?v=ZsJRXS_vrw0)
 * [Django Rest Framework](https://www.django-rest-framework.org/#installation)
 * [CSS Tables](https://www.w3schools.com/css/css_table.asp)
+* [Youtube](https://www.youtube.com/watch?v=okbByPWS1Xc)
 
 # Future Work
 
@@ -49,4 +50,4 @@ This is a program that will be used as a web app to search for groceries in the 
 * cd to virtual enviroment
 * cd grocery
 * python manage.py runserver
-* Click on link to open webiste
+* click on link to open website
