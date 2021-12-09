@@ -1,29 +1,23 @@
-<body>      
-    <header>
-        <div class="wrapper">
-            <h1><a href="{% url 'home' %}">CheapGrocery<span class="color"> </a></h1>
-        </div>
-    </header>
-    {% block content %}
-    <h1>Add a grocery</h1>
-    <form method="post"> {% csrf_token %}
-        <label for="item_name">Item Name</label>
-        <input type="text" value="" name="item_name">
-        <label for="item_price">Item Price</label>
-        <input type="text" value="" name="item_price">
-        <label for="item_mall">Item Mall</label>
-        <select name="item_mall">
-            <option value="Walmart">Walmart</option>
-            <option value="Albertsons">Albertsons</option>
-            <option value="Broulim's">Broulim's</option>
-        </select>
-        <input type="submit" value="Save" name="">
-    </form>
-    <div>
-        {% for message in messages %}
-        <h3>{{message}}</h3>
-        {% endfor %}
-    </div>
-    {% endblock content %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add a grocery</h1>
+<form method="post"> {% csrf_token %}
+    <label for="item_name">Item Name</label>
+    <input type="text" value="" name="item_name">
+    <label for="item_price">Item Price</label>
+    <input type="text" value="" name="item_price">
+    <label for="item_mall">Item Mall</label>
+    <select name="item_mall">
+        <option value="Walmart">Walmart</option>
+        <option value="Albertsons">Albertsons</option>
+        <option value="Broulim's">Broulim's</option>
+    </select>
+    <input type="submit" value="Save" name="">
+</form>
+<div>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</div>
+{% endblock content %}
