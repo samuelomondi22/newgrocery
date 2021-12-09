@@ -57,9 +57,9 @@ class SearchResultsView(ListView):
                 new_item_price = self.request.POST.get('item_price')
                 new_item_mall = self.request.POST.get('item_mall')
 
-                if Mall.objects.filter(item_mall=new_item_mall).exists():
+                if Mall.objects.filter(item_mall=new_item_mall).filter(grocery=grocery).exists():
                     Mall.objects.filter(item_mall=new_item_mall).filter(grocery=grocery).update(item_price=new_item_price)
-                else:   
+                else:
                     mall = Mall(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
                     mall.save()
 
