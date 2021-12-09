@@ -9,7 +9,7 @@
         <p><a href="{% url 'add_grocery' %}">Add Grocery</a></p>
         <a href="{% url 'home' %}">Go back to HomePage</a>
       {% else %}
-      <p>Update Grocery Info</p>
+      <p class="update">Update Grocery Info</p>
        <form method="post"> {% csrf_token %}
         <label for="item_price">Item Price</label>
         <input type="text" value="" name="item_price">

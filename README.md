@@ -29,6 +29,7 @@ This is a program that will be used as a web app to search for groceries in the 
 * [Learn Django](https://learndjango.com/tutorials/django-search-tutorial)
 * [Youtube](https://www.youtube.com/watch?v=ZsJRXS_vrw0)
 * [Django Rest Framework](https://www.django-rest-framework.org/#installation)
+* [CSS Tables](https://www.w3schools.com/css/css_table.asp)
 
 # Future Work
 
@@ -42,3 +43,10 @@ This is a program that will be used as a web app to search for groceries in the 
 * python -m venv venv
 * cd venv
 * sudo pip install Django==3.2.9
+
+# Steps to run Website
+
+* cd to virtual enviroment
+* cd grocery
+* python manage.py runserver
+* Click on link to open webiste

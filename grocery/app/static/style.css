@@ -108,10 +108,7 @@ img {
     border-radius: 5px;
     margin-bottom: -10%;
     margin-right: 10%;
-}
-
-.col-s6 {
-    font-size: 15px;
+    object-fit: fill;
 }
 
 .update {
@@ -125,3 +122,20 @@ button {
     color: white;
     
 }
+
+table, th, td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-image: linear-gradient(to right, #71b7e6, #9b59b6) 1;
+}
+
+table {
+    width: 100%;
+}
+
+tr:hover {background-color: #71b7e6;}
+
+th {
+    background-color: #9b59b6;
+    color: white;
+  }
