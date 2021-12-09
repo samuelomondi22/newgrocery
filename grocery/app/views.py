@@ -63,7 +63,7 @@ class SearchResultsView(ListView):
                     mall = Mall(item_price=new_item_price, item_mall=new_item_mall, grocery=grocery)
                     mall.save()
 
-                return redirect('http://127.0.0.1:8000/success/')
+                return redirect('http://127.0.0.1:8000/search/?search=' + str(grocery))
             else:
                 redirect('http://127.0.0.1:8000/failed/')
 
