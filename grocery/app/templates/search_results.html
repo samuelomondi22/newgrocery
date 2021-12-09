@@ -6,7 +6,8 @@
     <div class="col-s6">
       {% if object_list == None %}
         No search results for this query.
-        <p><a href="{% url 'add_grocery' %}">Add Grocery</a></p>
+        <a href="{% url 'add_grocery' %}">Add Grocery</a>
+        <br>
         <a href="{% url 'home' %}">Go back to HomePage</a>
       {% else %}
       <p class="update">Update Grocery Info</p>
