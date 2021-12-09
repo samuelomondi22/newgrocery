@@ -6,8 +6,6 @@ This is a program that will be used as a web app to search for groceries in the 
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
-
 * Python
 * SQL
 * Django
@@ -33,20 +31,14 @@ This is a program that will be used as a web app to search for groceries in the 
 
 # Future Work
 
-* Researching and building the search feature
-* Researching and building the price and where to buy feedback
-* Research and build the login and sign-up
+* Shopping list feature
+* Store Map feature
+* Login and sign-up with user accounts
+* Hook up/ create a webscraper for prices or make the crowd sourcing more robust
 
-# Steps for Django Installation
+# Set up and Running the App Locally
 
-* sudo easy_install pip
-* python -m venv venv
-* cd venv
-* sudo pip install Django==3.2.9
-
-# Steps to run Website
-
-* cd to virtual enviroment
-* cd grocery
-* python manage.py runserver
-* Click on link to open webiste
+1. Create your virtual environment inside of the same folder as the .git folder using `python -m venv env`
+2. Start the virtual enviroment
+3. Run `pip install Django`
+3. Go into the grocery folder and run `python manage.py runserver`
